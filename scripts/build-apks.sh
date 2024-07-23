@@ -3,16 +3,19 @@ set -e
 rm -rf build/*
 
 VERSION=$(cat app/build.gradle | grep versionName | cut -d '"' -f 2)
+if [ -z $ANDROID_HOME ]; then
+    export ANDROID_HOME="/usr/local/lib/android/sdk"
+fi
 
 # build debug
-ANDROID_HOME=/opt/android-sdk/ ./gradlew assembleDebug
+./gradlew assembleDebug
 
 # build unsigned release
-ANDROID_HOME=/opt/android-sdk/ ./gradlew assembleRelease
+./gradlew assembleRelease
 
 # build signed release
 if [ ! -z $SIGN_STORE ] && [ ! -z $SIGN_PASSWORD ]; then
-    ANDROID_HOME=/opt/android-sdk/ ./gradlew assembleRelease \
+    ./gradlew assembleRelease \
         -Pandroid.injected.signing.store.file=$SIGN_STORE \
         -Pandroid.injected.signing.store.password=$SIGN_PASSWORD \
         -Pandroid.injected.signing.key.alias=nzbget-key \
