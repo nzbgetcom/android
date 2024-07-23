@@ -19,7 +19,11 @@ jobs:
 
     - name: Build APKs
       run: |
+        which java
+        java -version
         bash scripts/prepare-sdk.sh
+        which java
+        java -version
         bash scripts/build-apks.sh
 
     - name: Upload build artifacts
