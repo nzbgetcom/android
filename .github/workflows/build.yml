@@ -20,6 +20,7 @@ jobs:
     - name: Build APKs
       run: |
         bash scripts/prepare-sdk.sh
+        export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
         bash scripts/build-apks.sh
 
     - name: Upload build artifacts
