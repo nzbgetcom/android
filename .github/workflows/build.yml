@@ -19,13 +19,7 @@ jobs:
 
     - name: Build APKs
       run: |
-        sudo dpkg -l | grep java
-        which java
-        java -version
-        sudo apt-get purge temurin-11-jdk*
         bash scripts/prepare-sdk.sh
-        which java
-        java -version
         bash scripts/build-apks.sh
 
     - name: Upload build artifacts
