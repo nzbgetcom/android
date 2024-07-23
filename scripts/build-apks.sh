@@ -1,5 +1,8 @@
 #!/bin/sh
 set -e
+
+# cleanup output folder
+mkdir -p build
 rm -rf build/*
 
 VERSION=$(cat app/build.gradle | grep versionName | cut -d '"' -f 2)
