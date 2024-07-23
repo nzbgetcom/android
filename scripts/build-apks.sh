@@ -9,9 +9,11 @@ fi
 
 # build debug
 ./gradlew assembleDebug
+cp app/build/outputs/apk/debug/app-debug.apk build/
 
 # build unsigned release
 ./gradlew assembleRelease
+cp app/build/outputs/apk/release/app-release-unsigned.apk build/
 
 # build signed release
 if [ ! -z $SIGN_STORE ] && [ ! -z $SIGN_PASSWORD ]; then
@@ -20,12 +22,8 @@ if [ ! -z $SIGN_STORE ] && [ ! -z $SIGN_PASSWORD ]; then
         -Pandroid.injected.signing.store.password=$SIGN_PASSWORD \
         -Pandroid.injected.signing.key.alias=nzbget-key \
         -Pandroid.injected.signing.key.password=$SIGN_PASSWORD
+    cp app/build/outputs/apk/release/app-release.apk build/
 fi
-
-# copy apks to build directory
-cp app/build/outputs/apk/debug/app-debug.apk build/
-cp app/build/outputs/apk/release/app-release-unsigned.apk build/
-cp app/build/outputs/apk/release/app-release.apk build/
 
 # rename apks
 for FILE in build/*.apk; do
