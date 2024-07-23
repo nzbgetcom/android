@@ -22,7 +22,7 @@ jobs:
         sudo dpkg -l | grep java
         which java
         java -version
-        sudo apt-get purge java*
+        sudo apt-get purge temurin-11-jdk*
         bash scripts/prepare-sdk.sh
         which java
         java -version
