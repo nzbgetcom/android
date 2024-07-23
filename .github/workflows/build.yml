@@ -22,6 +22,7 @@ jobs:
         sudo dpkg -l | grep java
         which java
         java -version
+        sudo apt-get purge java*
         bash scripts/prepare-sdk.sh
         which java
         java -version
