@@ -14,14 +14,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+    - name: Checkout
+      uses: actions/checkout@v4
+
     - name: Build APKs
       run: |
         bash scripts/prepare-sdk.sh
         bash scripts/build-apks.sh
 
-    - name: Upload build artifacts with signatures
+    - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
         name: nzbget-apks
-        path: builds/*.apk
+        path: build/*.apk
         retention-days: 10
