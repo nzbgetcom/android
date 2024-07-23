@@ -19,6 +19,7 @@ jobs:
 
     - name: Build APKs
       run: |
+        sudo dpkg -l | grep java
         which java
         java -version
         bash scripts/prepare-sdk.sh
