@@ -1,0 +1,27 @@
+name: build
+
+on:
+  push:
+    branches:
+    - main
+    - feature/*
+    tags:
+    - "v*"
+  workflow_dispatch:
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Build APKs
+      run: |
+        bash scripts/prepare-sdk.sh
+        bash scripts/build-apks.sh
+
+    - name: Upload build artifacts with signatures
+      uses: actions/upload-artifact@v4
+      with:
+        name: nzbget-apks
+        path: builds/*.apk
+        retention-days: 10

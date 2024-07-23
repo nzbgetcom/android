@@ -29,3 +29,6 @@ Thumbs.db
 /app/src/main/jniLibs/x86/libdaemon.so
 /app/src/main/jniLibs/x86_64/libdaemon.so
 /app/src/main/jniLibs/arm64-v8a/libdaemon.so
+
+# local env file
+.env

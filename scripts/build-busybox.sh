@@ -1,5 +1,4 @@
 #!/bin/sh
-
 set -e
 
 BUSYBOX_VERSION=1.28.3
@@ -24,7 +23,7 @@ for ARCH in $ALL_ARCHS; do
 
     case $ARCH in
         i686)
-            CONFIG_CROSS_COMPILER_PREFIX="i686-linux-android"        
+            CONFIG_CROSS_COMPILER_PREFIX="i686-linux-android"
             ;;
         x86_64)
             CONFIG_CROSS_COMPILER_PREFIX="x86_64-linux-android"
