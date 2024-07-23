@@ -12,6 +12,10 @@ on:
 jobs:
   build-apk:
     runs-on: ubuntu-22.04
+    env:      
+      SIGN_STORE: /tmp/nzbget-key.jks
+      SIGN_STORE_CONTENT: ${{ secrets.SIGN_STORE_CONTENT }}
+      SIGN_PASSWORD: ${{ secrets.SIGN_PASSWORD }}
     steps:
 
     - name: Checkout
@@ -21,6 +25,7 @@ jobs:
       run: |
         bash scripts/prepare-sdk.sh
         export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+        echo $SIGN_STORE_CONTENT | base64 --decode > $SIGN_STORE
         bash scripts/build-apks.sh
 
     - name: Upload build artifacts
