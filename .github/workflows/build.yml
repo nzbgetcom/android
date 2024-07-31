@@ -1,0 +1,33 @@
+name: build
+
+on:
+  push:
+    branches:
+    - master
+  workflow_dispatch:
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-22.04
+    env:      
+      SIGN_STORE: /tmp/nzbget-key.jks
+      SIGN_STORE_CONTENT: ${{ secrets.SIGN_STORE_CONTENT }}
+      SIGN_PASSWORD: ${{ secrets.SIGN_PASSWORD }}
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Build APKs
+      run: |
+        bash scripts/prepare-sdk.sh
+        export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+        echo $SIGN_STORE_CONTENT | base64 --decode > $SIGN_STORE
+        bash scripts/build-apks.sh
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: nzbget-apks
+        path: build/*.apk
+        retention-days: 10

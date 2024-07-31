@@ -1,7 +1,7 @@
 # NZBGet Android Installer
 
-This is a helper app for Android, which installs [NZBGet](http://nzbget.net) using
-universal Linux installer provided on [NZBGet releases page](https://github.com/nzbget/nzbget/releases).
+This is a helper app for Android, which installs [NZBGet](http://nzbget.com) using
+universal Linux installer provided on [NZBGet releases page](https://github.com/nzbgetcom/nzbget/releases).
 
 The installer app automatically fetches NZBGet installer and installs it on an Android device.
 

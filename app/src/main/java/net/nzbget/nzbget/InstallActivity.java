@@ -179,7 +179,7 @@ public class InstallActivity extends AppCompatActivity implements ActivityCompat
         File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "nzbget-version-android.json");
         file.delete();
 
-        String url = "https://nzbget.net/info/nzbget-version-android.json";
+        String url = "https://nzbget.com/info/nzbget-version-android.json";
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
         request.setTitle("NZBGet daemon installer info");
         request.setDescription("nzbget-version-android.json");
